@@ -12,14 +12,52 @@
 <body>
     <div class="box">
         {{name}}
+        <!-- <img v-bind:src="img" alt="" style="width: 100%"> -->
+        <img :src="img" alt="" style=" height: 600px">
+        <!-- <button @click="clickHandler">换图片</button> -->
+        <button v-on:click="clickHandler">换图片</button>
+        <span>{{count}}</span>
+        <button @click="clickOne">+1</button>
+        <input type="text" v-model="text">
+        <span>{{text}}</span>
+        <!-- 循环 -->
+        <div v-for="item in arr">{{item.name}},{{item.price}}</div>
+        <!-- 条件 -->
+        <div v-if="flag==0">{{flag}}</div>
+        <div v-else="flag==1">{{flag}}</div>
     </div>
 </body>
 <script>
     new Vue({
         el: ".box",
         data: {
-            name: "🐖成全"
-        }
+            name: "🐖成全",
+            img: "https://api.ixiaowai.cn/mcapi/mcapi.php",
+            count: 0,
+            text: "🐖💩",
+            arr: [{
+                name: "1",
+                price: "￥1"
+            }, {
+                name: "2",
+                price: "￥2"
+            }, {
+                name: "3",
+                price: "￥3"
+            }, ],
+            flag: 1
+        },
+        methods: {
+            clickHandler() {
+                location.reload();
+            },
+            clickOne() {
+                this.count++;
+            }
+        },
+
+
+
     })
 </script>
 
