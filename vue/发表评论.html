@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./js/bootstrap.css">
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <div class="container">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">发表评论</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="username">发表人</label>
+                            <input v-model="username" id="username" name="username" type="text" class="form-control" placeholder="请输入发表人">
+                        </div>
+                        <div class="form-group">
+                            <label for="content">发表内容</label>
+                            <textarea v-model="content" id="content" name="content" class="form-control" rows="3" placeholder="请输入发表内容"></textarea>
+                        </div>
+                        <input @click="getComment" class="btn btn-success" type="submit" value="提交">
+                    </form>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li v-for="(item,i) in arr" :key="i" :class="{'list-group-item':true,active:nowLi===i}" @click="getIndex(i)">
+                    <span class="badge">{{item.username}}</span> {{item.content}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '.app',
+        data: {
+            username: "",
+            content: "",
+            arr: [],
+            nowLi: 0
+        },
+        methods: {
+            getComment(e) {
+                e.preventDefault();
+                this.arr.unshift({
+                    username: this.username,
+                    content: this.content
+                })
+                this.username = "";
+                this.content = ""
+            },
+            getIndex(i) {
+                this.nowLi = i;
+            }
+        }
+
+    });
+</script>
+
+</html>

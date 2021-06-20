@@ -25,6 +25,7 @@
         <!-- 条件 -->
         <div v-if="flag==0">{{flag}}</div>
         <div v-else="flag==1">{{flag}}</div>
+        <div :style="{width:'100px',height:'100px',background:color?'pink':'red'}"></div>
     </div>
 </body>
 <script>
@@ -45,7 +46,8 @@
                 name: "3",
                 price: "￥3"
             }, ],
-            flag: 1
+            flag: 1,
+
         },
         methods: {
             clickHandler() {
